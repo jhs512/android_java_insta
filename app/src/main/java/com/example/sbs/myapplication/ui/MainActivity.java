@@ -5,6 +5,7 @@ import android.view.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -14,6 +15,8 @@ import com.example.sbs.myapplication.R;
 import com.example.sbs.myapplication.databinding.ActivityMainBinding;
 import com.example.sbs.myapplication.databinding.NavHeaderMainBinding;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,12 +28,10 @@ public class MainActivity extends AppCompatActivity {
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         binding.setLifecycleOwner(this);
 
-        MainViewModel vm = new MainViewModel();
+        //MainViewModel vm = new MainViewModel();
+        MainViewModel vm = new ViewModelProvider(this).get(MainViewModel.class);
         binding.setMainVm(vm);
         setContentView(binding.getRoot());
-
-        // 아바타 이미지 세팅
-        vm.lvAvartarImgUrl.setValue("https://i.pravatar.cc/600?img=37");
 
         setSupportActionBar(binding.appBarMain.toolbar);
         binding.appBarMain.fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
