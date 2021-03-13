@@ -16,8 +16,9 @@ import com.example.sbs.myapplication.databinding.ActivityMainBinding;
 import com.example.sbs.myapplication.databinding.NavHeaderMainBinding;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.util.Random;
+import dagger.hilt.android.AndroidEntryPoint;
 
+@AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
