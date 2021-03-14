@@ -70,16 +70,21 @@ public class RecyclerViewAdapterArticle extends RecyclerView.Adapter<RecyclerVie
         if (holder instanceof HeaderViewHolder) {
 
         } else if (holder instanceof FooterViewHolder) {
-            FooterViewHolder footerViewHolder = (FooterViewHolder) holder;
 
         } else {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
 
-            int pokemonIndex = position - 1;
+            int articleIndex = position - 1;
 
-            Article article = data.get(pokemonIndex);
+            Article article = data.get(articleIndex);
             itemViewHolder.textViewId.setText(article.id + "번");
-            itemViewHolder.textViewId.setTag(pokemonIndex);
+            itemViewHolder.textViewId.setTag(articleIndex);
+
+            itemViewHolder.textViewTitle.setText(article.title);
+            itemViewHolder.textViewTitle.setTag(articleIndex);
+
+            itemViewHolder.imageViewThumb.setTag(articleIndex);
+            Util.loadImageOn(article.getThumbImgUrl(), itemViewHolder.imageViewThumb);
         }
     }
 
@@ -116,15 +121,20 @@ public class RecyclerViewAdapterArticle extends RecyclerView.Adapter<RecyclerVie
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
         public TextView textViewId;
-        public TextView textViewName;
-        public ImageView imageViewPokemon;
+        public TextView textViewTitle;
+        public ImageView imageViewThumb;
 
         public ItemViewHolder(@NonNull View view) {
             super(view);
 
             textViewId = view.findViewById(R.id.item_article__textViewId);
-
             textViewId.setOnClickListener(onClickItem);
+
+            textViewTitle = view.findViewById(R.id.item_article__textViewTitle);
+            textViewTitle.setOnClickListener(onClickItem);
+
+            imageViewThumb = view.findViewById(R.id.item_article__imageViewThumb);
+            imageViewThumb.setOnClickListener(onClickItem);
         }
     }
 
