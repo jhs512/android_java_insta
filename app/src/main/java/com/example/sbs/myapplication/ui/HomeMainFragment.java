@@ -1,4 +1,4 @@
-package com.example.sbs.myapplication.ui.home;
+package com.example.sbs.myapplication.ui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,15 +14,15 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.sbs.myapplication.R;
 
-public class HomeFragment extends Fragment {
+public class HomeMainFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
+    private HomeMainViewModel homeViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+                new ViewModelProvider(this).get(HomeMainViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_home_main, container, false);
         final TextView textView = root.findViewById(R.id.text_home);
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
