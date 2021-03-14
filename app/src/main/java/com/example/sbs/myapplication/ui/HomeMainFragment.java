@@ -13,20 +13,23 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.sbs.myapplication.R;
+import com.example.sbs.myapplication.databinding.FragmentHomeMainBinding;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class HomeMainFragment extends Fragment {
-
-    private HomeMainViewModel homeViewModel;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeMainViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home_main, container, false);
 
-        return root;
+        HomeMainViewModel homeViewModel =
+                new ViewModelProvider(this).get(HomeMainViewModel.class);
+
+        FragmentHomeMainBinding binding = FragmentHomeMainBinding.inflate(getLayoutInflater());
+        binding.setLifecycleOwner(this);
+
+        binding.setVm(homeViewModel);
+
+        return binding.getRoot();
     }
 }
