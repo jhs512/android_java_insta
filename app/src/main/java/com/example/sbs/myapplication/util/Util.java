@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -117,12 +118,12 @@ public class Util {private static Application application;
 
     public static void loadImageOn(String imgUrl, ImageView imageView, int borderRadius) {
         if (borderRadius > 0) {
-            Glide.with(application)
+            GlideApp.with(application)
                     .load(imgUrl)
                     .transform(new CenterCrop(), new RoundedCorners((int) dipToPixels(borderRadius)))
                     .into(imageView);
         } else {
-            Glide.with(application)
+            GlideApp.with(application)
                     .load(imgUrl)
                     .into(imageView);
         }
