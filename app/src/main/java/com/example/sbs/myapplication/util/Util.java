@@ -10,10 +10,14 @@ import android.util.TypedValue;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.example.sbs.myapplication.R;
 import com.example.sbs.myapplication.ui.BaseActivity;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -144,5 +148,9 @@ public class Util {
 
     public static <T extends BaseActivity> T getCurrentActivity() {
         return (T) Util.currentActivity;
+    }
+
+    public static NavController getNavController() {
+        return Navigation.findNavController(currentActivity, R.id.nav_host_fragment);
     }
 }

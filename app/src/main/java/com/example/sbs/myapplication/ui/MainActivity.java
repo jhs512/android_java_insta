@@ -14,6 +14,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.sbs.myapplication.R;
 import com.example.sbs.myapplication.databinding.ActivityMainBinding;
 import com.example.sbs.myapplication.databinding.NavHeaderMainBinding;
+import com.example.sbs.myapplication.util.Util;
 import com.google.android.material.snackbar.Snackbar;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -29,7 +30,6 @@ public class MainActivity extends BaseActivity {
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         binding.setLifecycleOwner(this);
 
-        //MainViewModel vm = new MainViewModel();
         MainViewModel vm = new ViewModelProvider(this).get(MainViewModel.class);
         binding.setMainVm(vm);
         setContentView(binding.getRoot());
@@ -47,7 +47,7 @@ public class MainActivity extends BaseActivity {
                 R.id.nav_home_main, R.id.nav_gallery, R.id.nav_slideshow)
                 .setDrawerLayout(binding.drawerLayout)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavController navController = Util.getNavController();
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
