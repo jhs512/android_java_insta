@@ -23,10 +23,11 @@ public class ArticleDetailFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         int id = getArguments().getInt("id", 0);
-        Util.toast(id + "번");
 
         ArticleDetailViewModel vm =
                 new ViewModelProvider(this).get(ArticleDetailViewModel.class);
+
+        vm.setId(id);
 
         FragmentArticleDetailBinding binding = FragmentArticleDetailBinding.inflate(getLayoutInflater());
         binding.setLifecycleOwner(this);

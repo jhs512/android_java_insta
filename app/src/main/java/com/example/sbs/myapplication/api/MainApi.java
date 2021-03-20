@@ -9,4 +9,7 @@ public interface MainApi {
 
     @GET("usr/article/list")
     Observable<MainApi__RB<MainApi__usr_article_list__RBB>> usr_article_list(@Query("boardId") int boardId, @Query("page") int page);
+
+    @GET("usr/article/detail")
+    Observable<MainApi__RB<MainApi__usr_article_detail__RBB>> usr_article_detail(@Query("id") int id);
 }
