@@ -30,6 +30,8 @@ import java.net.URL;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.ObservableEmitter;
+import io.reactivex.rxjava3.core.ObservableOnSubscribe;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -155,28 +157,37 @@ public class Util {
         loadImageOnByFinalUrl(imgUrl, imageView, 0);
     }
 
-    public static void loadImageOnByFinalUrl(String imgUrl, ImageView imageView, int borderRadius) {
+    public static interface UIJob {
+        void doJob(@NonNull Object data);
+    }
 
-        Observable<String> observable = Observable.create(subscriber -> {
-            // 여기는 별도의 쓰레드에서 실행됨
-            subscriber.onNext(getRedirectFinalUrl(imgUrl));
-            subscriber.onComplete();
-        });
+    public static interface NetworkJob {
+        Object doJob();
+    }
+
+    public static void doNetworkJobAndUiThread(NetworkJob networkJob, @NonNull UIJob uIJob) {
+        ObservableOnSubscribe source = new ObservableOnSubscribe() {
+            @Override
+            public void subscribe(@NonNull ObservableEmitter emitter) throws Throwable {
+                emitter.onNext(networkJob.doJob());
+                emitter.onComplete();
+            }
+        };
+
+        Observable observable = Observable.create(source);
 
         observable
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<String>() {
-
+                .subscribe(new Observer() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(@NonNull String s) {
-                        // 여기는 UI의 쓰레드에서 실행됨
-                        loadImageOn(s, imageView, borderRadius);
+                    public void onNext(@NonNull Object o) {
+                        uIJob.doJob(o);
                     }
 
                     @Override
@@ -189,6 +200,10 @@ public class Util {
 
                     }
                 });
+    }
+
+    public static void loadImageOnByFinalUrl(String imgUrl, ImageView imageView, int borderRadius) {
+        doNetworkJobAndUiThread(() -> getRedirectFinalUrl(imgUrl), url -> loadImageOn((String) url, imageView, borderRadius));
     }
 
     public static String getRedirectFinalUrl(String url) {
