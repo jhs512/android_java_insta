@@ -35,8 +35,15 @@ public class MainActivity extends BaseActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMain.toolbar);
-        binding.appBarMain.fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+
+        binding.appBarMain.fab.setOnClickListener(view -> {
+            Util.getNavController().navigate(R.id.nav_article_write);
+        });
+
+        /*
+        binding.appBarMain.fab.setOnClickListener(view -> Snackbar.make(view, "로그인 후 이용해주세요.", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show());
+         */
 
         NavHeaderMainBinding navHeaderMainBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.nav_header_main, binding.navView, false);
         navHeaderMainBinding.setLifecycleOwner(this);
@@ -44,7 +51,7 @@ public class MainActivity extends BaseActivity {
         binding.navView.addHeaderView(navHeaderMainBinding.getRoot());
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home_main, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_home_main, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_article_write)
                 .setDrawerLayout(binding.drawerLayout)
                 .build();
         NavController navController = Util.getNavController();

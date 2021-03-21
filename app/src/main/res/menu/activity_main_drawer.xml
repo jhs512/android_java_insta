@@ -8,6 +8,12 @@
             android:id="@+id/nav_home_main"
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_home_main" />
+
+        <item
+            android:id="@+id/nav_article_write"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/menu_article_write" />
+
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
