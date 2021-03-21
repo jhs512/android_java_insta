@@ -1,11 +1,13 @@
 package com.example.sbs.myapplication.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.ActivityNavigator;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -14,6 +16,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.sbs.myapplication.R;
 import com.example.sbs.myapplication.databinding.ActivityMainBinding;
 import com.example.sbs.myapplication.databinding.NavHeaderMainBinding;
+import com.example.sbs.myapplication.router.Router;
 import com.example.sbs.myapplication.util.Util;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -37,7 +40,7 @@ public class MainActivity extends BaseActivity {
         setSupportActionBar(binding.appBarMain.toolbar);
 
         binding.appBarMain.fab.setOnClickListener(view -> {
-            Util.getNavController().navigate(R.id.nav_article_write);
+            Router.goToArticleWrite();
         });
 
         /*

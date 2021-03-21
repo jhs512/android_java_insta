@@ -8,6 +8,7 @@ import androidx.navigation.NavController;
 
 import com.example.sbs.myapplication.R;
 import com.example.sbs.myapplication.dto.Article;
+import com.example.sbs.myapplication.router.Router;
 import com.example.sbs.myapplication.service.ArticleService;
 import com.example.sbs.myapplication.util.Util;
 
@@ -26,12 +27,7 @@ public class HomeMainViewModel extends ViewModel {
         recyclerViewAdapterArticle.setOnClickItem((v) -> {
             int articleIndex = (int) v.getTag();
             Article article = recyclerViewAdapterArticle.getArticle(articleIndex);
-
-            NavController navController = Util.getNavController();
-
-            Bundle bundle = new Bundle();
-            bundle.putInt("id", article.id);
-            navController.navigate(R.id.nav_article_detail, bundle);
+            Router.goToArticleDetail(article.id);
         });
 
         articleService.usr_article_list(1, 1, rb -> {
