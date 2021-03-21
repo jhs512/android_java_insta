@@ -27,4 +27,8 @@ public class Router {
 
         Util.getNavController().navigate(R.id.nav_article_write, null, null, extras);
     }
+
+    public static void goToHomeMain() {
+        Util.getNavController().navigate(R.id.nav_home_main);
+    }
 }
