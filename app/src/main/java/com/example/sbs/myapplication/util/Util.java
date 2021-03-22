@@ -208,7 +208,6 @@ public class Util {
             HttpURLConnection con = (HttpURLConnection) new URL(url).openConnection();
             con.setInstanceFollowRedirects(false);
             con.connect();
-            con.getInputStream();
 
             if (con.getResponseCode() == HttpURLConnection.HTTP_MOVED_PERM || con.getResponseCode() == HttpURLConnection.HTTP_MOVED_TEMP) {
                 String redirectUrl = con.getHeaderField("Location");
