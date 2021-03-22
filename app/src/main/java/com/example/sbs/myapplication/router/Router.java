@@ -32,4 +32,9 @@ public class Router {
         NavController navController = Util.getNavController();
         navController.navigate(MobileNavigationDirections.actionGlobalHomeMainFragment());
     }
+
+    public static void goToMemberLogin() {
+        NavController navController = Util.getNavController();
+        navController.navigate(MobileNavigationDirections.actionGlobalMemberLoginFragment());
+    }
 }

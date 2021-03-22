@@ -13,6 +13,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.sbs.myapplication.App;
 import com.example.sbs.myapplication.R;
 import com.example.sbs.myapplication.databinding.ActivityMainBinding;
 import com.example.sbs.myapplication.databinding.NavHeaderMainBinding;
@@ -39,8 +40,16 @@ public class MainActivity extends BaseActivity {
 
         setSupportActionBar(binding.appBarMain.toolbar);
 
+
         binding.appBarMain.fab.setOnClickListener(view -> {
-            Router.goToArticleWrite();
+            if (App.isLogined()) {
+                Router.goToArticleWrite();
+            } else {
+                Snackbar.make(view, "로그인 후 이용해주세요.", Snackbar.LENGTH_LONG)
+                        .setAction("로그인", view1 -> {
+                            Router.goToMemberLogin();
+                        }).show();
+            }
         });
 
         /*

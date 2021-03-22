@@ -1,5 +1,6 @@
 package com.example.sbs.myapplication.api;
 
+import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -19,4 +20,8 @@ public interface MainApi {
     @FormUrlEncoded
     @POST("usr/article/doAdd")
     Observable<MainApi__RB<MainApi__usr_article_doAdd__RBB>> usr_article_doAdd(@Field("authKey") String authKey, @Field("boardId") int boardId, @Field("title") String title, @Field("body") String body);
+
+    @FormUrlEncoded
+    @POST("usr/member/authKey")
+    Observable<MainApi__RB<MainApi__usr_member_authKey__RBB>> usr_member_authKey(@Field("loginId") String loginId, @Field("loginPw") String loginPw);
 }

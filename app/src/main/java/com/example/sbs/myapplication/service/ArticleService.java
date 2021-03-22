@@ -2,6 +2,7 @@ package com.example.sbs.myapplication.service;
 
 import androidx.annotation.NonNull;
 
+import com.example.sbs.myapplication.App;
 import com.example.sbs.myapplication.api.MainApi;
 import com.example.sbs.myapplication.api.MainApi__RB;
 import com.example.sbs.myapplication.api.MainApi__usr_article_detail__RBB;
@@ -42,7 +43,7 @@ public class ArticleService {
     }
 
     public void usr_article_doAdd(int boardId, String title, String body, @NonNull Consumer<? super MainApi__RB<MainApi__usr_article_doAdd__RBB>> onNext) {
-        String authKey = "authKey1__2";
+        String authKey = App.getAuthKey();
 
         mainApi.usr_article_doAdd(authKey, boardId, title, body)
                 .subscribeOn(Schedulers.io())

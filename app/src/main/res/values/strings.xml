@@ -12,4 +12,5 @@
     <string name="menu_gallery">갤러리</string>
     <string name="menu_slideshow">슬라이드 쇼</string>
     <string name="menu_article_write">작성</string>
+    <string name="menu_member_login">로그인</string>
 </resources>

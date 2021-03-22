@@ -14,5 +14,6 @@ public class MyApplication extends Application {
         super.onCreate();
         Stetho.initializeWithDefaults(this);
         Util.init(this);
+        App.init();
     }
 }

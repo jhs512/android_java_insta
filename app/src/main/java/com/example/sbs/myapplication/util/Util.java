@@ -68,6 +68,10 @@ public class Util {
         spEditor.putString(key, value);
     }
 
+    public static void spRemove(String key) {
+        spEditor.remove(key);
+    }
+
     public static void spPut(String key, Object obj) {
         spPut(key, objToJsonString(obj));
     }

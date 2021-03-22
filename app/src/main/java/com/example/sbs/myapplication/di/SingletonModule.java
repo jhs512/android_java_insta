@@ -24,8 +24,8 @@ public class SingletonModule {
 
     @Provides
     @Singleton
-    public static MemberService provideMemberService() {
-        return new MemberService();
+    public static MemberService provideMemberService(MainApi mainApi) {
+        return new MemberService(mainApi);
     }
 
     @Provides
