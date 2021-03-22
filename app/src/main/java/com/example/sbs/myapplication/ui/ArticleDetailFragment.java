@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.sbs.myapplication.databinding.FragmentArticleDetailBinding;
+import com.example.sbs.myapplication.dto.Article;
 import com.example.sbs.myapplication.util.Util;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -23,11 +24,17 @@ public class ArticleDetailFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         int id = ArticleDetailFragmentArgs.fromBundle(getArguments()).getId();
+        Article article = ArticleDetailFragmentArgs.fromBundle(getArguments()).getArticle();
 
         ArticleDetailViewModel vm =
                 new ViewModelProvider(this).get(ArticleDetailViewModel.class);
 
-        vm.setId(id);
+        if ( article != null ) {
+            vm.setArticle(article);
+        }
+        else {
+            vm.setId(id);
+        }
 
         FragmentArticleDetailBinding binding = FragmentArticleDetailBinding.inflate(getLayoutInflater());
         binding.setLifecycleOwner(this);

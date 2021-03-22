@@ -27,7 +27,7 @@ public class HomeMainViewModel extends ViewModel {
         recyclerViewAdapterArticle.setOnClickItem((v) -> {
             int articleIndex = (int) v.getTag();
             Article article = recyclerViewAdapterArticle.getArticle(articleIndex);
-            Router.goToArticleDetail(article.id);
+            Router.goToArticleDetail(article);
         });
 
         articleService.usr_article_list(1, 1, rb -> {

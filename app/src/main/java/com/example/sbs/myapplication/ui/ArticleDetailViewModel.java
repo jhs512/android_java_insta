@@ -16,6 +16,11 @@ public class ArticleDetailViewModel extends ViewModel {
     private ArticleService articleService;
     public MutableLiveData<Article> lvArticle = new MutableLiveData<>();
 
+    public void setArticle(Article article) {
+        this.id = article.id;
+        lvArticle.setValue(article);
+    }
+
     public void setId(int id) {
         this.id = id;
 
