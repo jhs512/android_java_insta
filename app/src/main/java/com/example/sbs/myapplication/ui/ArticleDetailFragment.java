@@ -22,7 +22,7 @@ public class ArticleDetailFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        int id = getArguments().getInt("id", 0);
+        int id = ArticleDetailFragmentArgs.fromBundle(getArguments()).getId();
 
         ArticleDetailViewModel vm =
                 new ViewModelProvider(this).get(ArticleDetailViewModel.class);

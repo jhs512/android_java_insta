@@ -5,6 +5,21 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/nav_gallery">
 
+    <action
+        android:id="@+id/action_global_homeMainFragment"
+        app:destination="@id/nav_home_main"
+        app:launchSingleTop="true" />
+
+    <action
+        android:id="@+id/action_global_articleWriteFragment"
+        app:destination="@id/nav_article_write"
+        app:launchSingleTop="true" />
+
+    <action
+        android:id="@+id/action_global_articleDetailFragment"
+        app:destination="@id/nav_article_detail"
+        app:launchSingleTop="true" />
+
     <fragment
         android:id="@+id/nav_home_main"
         android:name="com.example.sbs.myapplication.ui.HomeMainFragment"
@@ -21,7 +36,11 @@
         android:id="@+id/nav_article_detail"
         android:name="com.example.sbs.myapplication.ui.ArticleDetailFragment"
         android:label="@string/menu_article_detail"
-        tools:layout="@layout/fragment_article_detail" />
+        tools:layout="@layout/fragment_article_detail">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_gallery"
